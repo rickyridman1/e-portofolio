@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Portofolio | Ricky Ridman</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Lora', 'serif'],
+                    },
+                    colors: {
+                        primary: '#1e40af', // Blue-800
+                        secondary: '#0f766e', // Teal-700
+                        accent: '#f59e0b', // Amber-500
+                        bglight: '#f8fafc',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .animate-fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-bglight text-slate-800 font-sans antialiased flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass-nav border-b border-gray-200 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+    <img src="logo-ppg.png" 
+         alt="Logo PPL Terbimbing" 
+         class="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+    />
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-1 lg:space-x-4">
+                    <button data-target="beranda" class="nav-link px-3 py-2 text-sm font-medium transition-colors border-b-2 border-transparent hover:text-primary active-nav">Beranda</button>
+                    <button data-target="profil" class="nav-link px-3 py-2 text-sm font-medium text-gray-500 transition-colors border-b-2 border-transparent hover:text-primary">Profil</button>
+                    <button data-target="analisis" class="nav-link px-3 py-2 text-sm font-medium text-gray-500 transition-colors border-b-2 border-transparent hover:text-primary">Analisis Artefak</button>
+                    <button data-target="penilaian" class="nav-link px-3 py-2 text-sm font-medium text-gray-500 transition-colors border-b-2 border-transparent hover:text-primary">Penilaian</button>
+                    <button data-target="model-guru" class="nav-link px-3 py-2 text-sm font-medium text-gray-500 transition-colors border-b-2 border-transparent hover:text-primary">Model Guru</button>
+					<button data-target="refleksi" class="nav-link px-3 py-2 text-sm font-medium text-gray-500 transition-colors border-b-2 border-transparent hover:text-primary">Refleksi</button>
+                    <button data-target="dokumentasi" class="nav-link px-3 py-2 text-sm font-medium text-gray-500 transition-colors border-b-2 border-transparent hover:text-primary">Dokumentasi</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-500 hover:text-primary focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
+                <button data-target="beranda" class="nav-link-mobile block px-3 py-3 text-base font-medium text-primary bg-indigo-50 rounded-md text-left">Beranda</button>
+                <button data-target="profil" class="nav-link-mobile block px-3 py-3 text-base font-medium text-gray-600 hover:text-primary hover:bg-indigo-50 rounded-md text-left">Profil Mahasiswa</button>
+                <button data-target="analisis" class="nav-link-mobile block px-3 py-3 text-base font-medium text-gray-600 hover:text-primary hover:bg-indigo-50 rounded-md text-left">Analisis Artefak</button>
+                <button data-target="penilaian" class="nav-link-mobile block px-3 py-3 text-base font-medium text-gray-600 hover:text-primary hover:bg-indigo-50 rounded-md text-left">Lampiran Penilaian</button>
+                <button data-target="model-guru" class="nav-link-mobile block px-3 py-3 text-base font-medium text-gray-600 hover:text-primary hover:bg-indigo-50 rounded-md text-left">Model Guru</button>
+				<button data-target="Refleksi" class="nav-link px-3 py-2 text-sm font-medium text-gray-500 transition-colors border-b-2 border-transparent hover:text-primary">Refleksi</button>
+                <button data-target="dokumentasi" class="nav-link-mobile block px-3 py-3 text-base font-medium text-gray-600 hover:text-primary hover:bg-indigo-50 rounded-md text-left">Dokumentasi Kegiatan</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow pt-24 pb-12 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- 1. HALAMAN BERANDA -->
+        <section id="beranda" class="page-section opacity-0 animate-fade-in">
+            <div class="flex flex-col-reverse lg:flex-row items-center gap-12 mt-10">
+                <div class="flex-1 space-y-6">
+                    <div class="inline-block px-4 py-1.5 bg-indigo-100 text-primary font-medium rounded-full text-sm">
+                        
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-slate-900">
+                        E-Portofolio PPG <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Ricky Ridman Teknik Otomotif</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 leading-relaxed max-w-2xl font-serif">
+                        E-Portofolio ini terbagi dalam dua bagian yaitu E-Portofolio 1 (Penugasan UTS) & E-Portofolio 2 (Penugasan UAS). E-Portfolio 1 bertujuan untuk memberikan refleksi awal sebagai fondasi dasar karakter mahasiswa yang terdiri dari beberapa komponen yaitu profil mahasiswa, analisis artefak, instrumen penilaian, dan model guru yang dituju. Sedangkan E-Portofolio 2 bertujuan untuk merumuskan prinsip atau nilai seorang guru sebagai refleksi akhir dari PPL Terbimbing yang mencakup dua bagian yaitu refleksi akhir dan filosofi mengajar.
+                    </p>
+                    <div class="pt-4 flex gap-4">
+                        <button onclick="document.querySelector('[data-target=\'profil\']').click()" class="bg-primary hover:bg-blue-900 text-white px-6 py-3 rounded-lg font-medium transition shadow-lg shadow-blue-900/20 flex items-center gap-2">
+                            Mulai Eksplorasi <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex-1 w-full relative">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-3xl transform rotate-3 scale-105"></div>
+                    <!-- Placeholder untuk foto ilustrasi/sekolah -->
+                    <img src="Mengajar.jpeg" alt="Wawancara Murid" class="relative rounded-3xl shadow-2xl object-cover h-[400px] md:h-[500px] w-full border-4 border-white">
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. PROFIL MAHASISWA -->
+        <section id="profil" class="page-section hidden opacity-0">
+            <div class="mb-10 text-center">
+                <h2 class="text-3xl font-bold text-slate-900 mb-3">Profil Mahasiswa</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+                <div class="grid grid-cols-1 lg:grid-cols-12">
+                    <!-- Bagian Kiri: Foto & Quote -->
+                    <div class="col-span-1 lg:col-span-4 bg-slate-50 p-8 flex flex-col items-center justify-center border-r border-gray-100">
+                        <div class="w-48 h-48 rounded-full border-4 border-white shadow-lg overflow-hidden mb-6 relative group">
+                            <!-- Ganti dengan foto profil asli -->
+                            <img src="poto-profil.jpeg" alt="Foto Profil" class="w-full h-full object-cover transition duration-300 group-hover:scale-110">
+                        </div>
+                        
+			<h3 class="text-2xl font-bold text-slate-800 mb-6">Ricky Ridman, S.Pd.</h3>
+			<p class="text-secondary font-medium mb-1">Kontak:</p>
+			<a href="rickyridman.pto04@gmail.com" class="flex items-center gap-2 text-slate-500 hover:text-primary transition text-sm mb-2">
+				<i class="fa-regular fa-envelope"></i> rickyridman.pto04@gmail.com
+			</a>
+			<a href="https://wa.me/qr/ZAZDGTRO57V6D1" class="flex items-center gap-2 text-slate-500 hover:text-primary transition text-sm mb-6">
+				<i class="fa-brands fa-whatsapp"></i> +6282337086539
+			</a>
+			<p class="text-secondary font-medium mb-1">Alamat:</p>
+			<a href="https://maps.app.goo.gl/chxbxZcknRpdRHQC7?g_st=ac" class="flex items-center gap-2 text-slate-500 hover:text-primary transition text-sm mb-2">
+				<i class="fas fa-map"></i> Jalan Sungai Miu No.29 A Kelurahan Baru, Kota Palu, Kecamatan Palu Barat, Provinsi Sulawesi Tengah
+			</a>
+
+                        <blockquote class="text-center font-serif italic text-slate-600 mt-auto px-4 border-t border-gray-200 pt-6">
+                            "Pendidikan otomotif sejati adalah proses mengubah 'bahan bakar' rasa ingin tahu menjadi 'tenaga' inovasi. Tanpa percikan minat, mesin kecerdasan sehebat apapun hanya akan menjadi logam yang dingin dan diam."
+                        </blockquote>
+                    </div>
+
+                    <!-- Bagian Kanan: Biodata & Narasi -->
+                    <div class="col-span-1 lg:col-span-8 p-8 md:p-12">
+                        <h4 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2 flex items-center gap-2">
+                            <i class="fa-regular fa-id-card text-primary"></i> Data Diri Akademik
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 mb-8">
+                            <div>
+                                <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Nomor Induk Mahasiswa</p>
+                                <p class="font-medium text-slate-800">2590074950850</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">LPTK PPG</p>
+                                <p class="font-medium text-slate-800">Universitas Negeri Makassar</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Bidang Studi</p>
+                                <p class="font-medium text-slate-800">Teknik Otomotif</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Lokasi PPL Terbimbing</p>
+                                <p class="font-medium text-slate-800">SMK Negeri 3 Makassar</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Dosen Pendamping Lapangan</p>
+                                <p class="font-medium text-slate-800">Ir. Wabdillah, S.Pd., M.Pd.</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Guru Pamong</p>
+                                <p class="font-medium text-slate-800">Imran Madjid, S.Pd., M.Si., M.Pd.</p>
+                            </div>
+                        </div>
+
+                        <h4 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2 flex items-center gap-2 mt-8">
+                            <i class="fa-solid fa-map-location-dot text-primary"></i> Asal & Keunikan Daerah
+                        </h4>
+                        <p class="text-slate-600 leading-relaxed leading-relaxed text-justify mb-8">
+Perkenalkan saya berasal dari <strong>kota palu</strong>, ibu kota <strong>Provinsi Sulawesi Tengah</strong>. Memiliki latar belakang Sejarah dan karakteristik geografis yang sangat unik dibandingkan kota-kota lain di Indonesia. Kota palu memiliki daya tarik tersendiri, mulai dari bentang alamnya hingga fenomena geologi yang langka antara lain: Kota lima dimensi, Kota dengan curah hujan terendah di Indonesia, Dilalui garis khatulistiwa, Fenomena geologi sesar palu-koro dan memiliki warisan budaya suku kaili yang memiliki berbagai tradisi unik. Nilai-nilai kearifan lokal inilah yang turut membentuk karakter dan pandangan saya dalam melihat keberagaman murid di kelas.
+                           
+                        </p>
+
+                        <h4 class="text-xl font-bold text-slate-800 mb-4 border-b pb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-seedling text-primary"></i> Inspirasi & Tujuan Menjadi Guru Profesional
+                        </h4>
+                        <p class="text-slate-600 leading-relaxed leading-relaxed text-justify">
+Selain karena background pendidikan saya adalah keguruan. Saya juga terinspirasi untuk menciptakan ruang kelas yang demokratis, di mana setiap murid merasa aman untuk berpendapat, bereksplorasi, dan menemukan potensi terbaik mereka tanpa rasa takut. Membantu murid untuk mengenali bakat mereka, terutama di bidang-bidang spesifik (seperti teknik atau kejuruan), agar mereka siap menghadapi dunia kerja atau pendidikan yang lebih tinggi.
+             
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. ANALISIS ARTEFAK PEMBELAJARAN -->
+        <section id="analisis" class="page-section hidden opacity-0">
+            <div class="mb-10 text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-900 mb-3">Analisis Artefak Pembelajaran</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-600 font-serif leading-relaxed text-justify">
+                    Bagian ini memuat refleksi dan analisis mendalam terhadap produk pembelajaran (Perangkat Ajar, Media, atau Asesmen) yang telah disusun selama pelaksanaan PPL.
+                </p>
+            </div>
+            
+            <div class="space-y-6">
+                <!-- Analisis Siklus 1 -->
+				<div class="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-slate-700 group flex flex-col">
+                    <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-book text-2xl text-slate-700"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-5">Analisis Perangkat Pembelajaran Siklus 1</h3>
+					
+                    <h3 class="text-l font-bold text-slate-800 mb-5">1. Kaitan dengan Teori Pemahaman Peserta Didik</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Konteks Teori:</strong> Konsep ini menekankan pentingnya pengenalan mendalam terhadap latar belakang, kesiapan kognitif, dan kondisi sosio-emosional siswa sebagai fondasi perancangan instruksional yang berpihak pada peserta didik.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Refleksi Penerapan:</strong> Dalam pelaksanaan pembelajaran, ditemukan dinamika kelas di mana beberapa siswa tampak kelelahan atau kurang fokus karena memiliki tanggung jawab eksternal, seperti harus membantu keluarga sepulang sekolah.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Dampak Pedagogis:</strong> Pemahaman terhadap kondisi riil ini menggeser paradigma mengajar menjadi lebih empatik. Alih-alih memaksakan penyampaian materi secara satu arah, pendekatan disesuaikan untuk menarik kembali fokus siswa tanpa menambah beban kognitif yang berlebihan. Hal ini dicapai melalui komunikasi persuasif dan memperbanyak aktivitas praktik yang melibatkan motorik sehingga siswa tetap terjaga dan terlibat aktif.
+                            </p>
+                        </div>
+						 <h3 class="text-l font-bold text-slate-800 mb-5">2. Kaitan dengan Teori Pembelajaran Mendalam (Deep Learning)</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Konteks Teori:</strong> Pembelajaran Mendalam (Deep Learning) menuntut proses belajar yang Meaningful (bermakna), mendorong siswa untuk berpikir kritis, memecahkan masalah, dan mengaplikasikan pengetahuan pada konteks dunia nyata, bukan sekadar hafalan.
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Refleksi Penerapan:</strong> Penerapan kerangka Understanding by Design (UbD) sangat membantu dalam menstrukturkan materi secara kohesif, misalnya dalam menyusun alur 6 pertemuan untuk materi Sistem AC atau merancang langkah pemecahan masalah sistem air conditioning  di SMK Negeri 3 makassar. Tujuan akhir pemahaman sudah dikunci sejak awal (sebagai backward design).
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Dampak Pedagogis:</strong> Siswa tidak hanya menghafal prinsip dasar termodinamika atau komponen sistem pengapian konvensional, tetapi diajak untuk mengurai fungsi dan kerusakannya dalam sebuah sistem utuh. Kasus ketidaksesuaian antara teori, aktivitas, dan asesmen dapat direduksi karena seluruh aktivitas difokuskan pada penalaran klinis yang relevan dengan kebutuhan industri.
+                            </p>
+                        </div>
+						 <h3 class="text-l font-bold text-slate-800 mb-5">3. Analisis Artefak Produk Rencana Pembelajaran</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Teori atau Konsep Pedagogi yang Diadopsi:</strong> Menggunakan kerangka UbD yang dipadukan dengan pendekatan Deep Learning serta model pembelajaran berbasis masalah (PBL). Pendekatan ini memastikan setiap elemen materi terhubung langsung dengan simulasi praktik bengkel.
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Kendala yang Terjadi:</strong> Tantangan utama adalah mempertahankan keterlibatan (engagement) siswa yang memiliki tingkat energi fluktuatif akibat kelelahan dari aktivitas di luar sekolah, serta memastikan pemerataan pemahaman saat membedah sistem otomotif yang kompleks.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Solusi dan Pembelajaran:</strong> Mentransformasi teori menjadi LKPD interaktif dan Jobsheet praktikum yang berpusat pada penemuan (inquiry). Bukti artefak tidak lagi hanya terpaku pada format tunggal, melainkan terbuka untuk berbagai bentuk dokumentasi tugas (baik dokumen tertulis maupun tautan daring) yang memudahkan siswa mengumpulkan hasil belajar mereka sesuai dengan kemampuan dan aksesibilitas masing-masing.
+                            </p>
+                        </div>
+						 <h3 class="text-l font-bold text-slate-800 mb-4">4. Kendala yang Terjadi dan Solusi Pedagogis (Problem-Solving)</h3>
+                        
+                        <!-- Struktur Desain Diperbarui Sesuai Gambar -->
+                        <div class="text-[#202124] text-[15px] leading-[1.6] mb-6 font-sans">
+                            <!-- Section A: Analisis Berdasarkan Teori -->
+                            <div class="mb-5">
+                                <h4 class="font-semibold text-[#202124] text-[15px] mb-1">Konteks Kendala</h4>
+                                <p class="text-relaxed text-sm text-justify">
+                                    Dalam pelaksanaan praktik pembelajaran, kendala utama yang saya hadapi tidak berpusat pada penyampaian materi teknis otomotif, melainkan pada aspek kesiapan dan kondisi sosio-emosional peserta didik. Berdasarkan hasil observasi dan asesmen awal, saya menemukan dinamika kelas di mana beberapa siswa kerap terlihat kelelahan, kurang fokus, dan mengalami penurunan motivasi saat mengikuti pembelajaran di kelas. Setelah melakukan pendekatan personal, teridentifikasi bahwa kondisi ini dipicu oleh tanggung jawab eksternal siswa yang harus bekerja membantu keluarga sepulang sekolah.
+                                </p>
+                            </div>
+							<h4 class="font-semibold text-[#202124] text-[15px] mb-1">Analisis Berdasarkan Teori</h4>
+                                <p class="text-relaxed text-sm text-justify">
+                                   Merujuk pada konsep Pemahaman Peserta Didik, kendala ini menyadarkan saya bahwa rancangan pembelajaran tidak bisa berjalan kaku. Kelelahan fisik yang dialami siswa secara langsung menurunkan kapasitas memori kerja (working memory) mereka. Jika saya memaksakan metode pengajaran konvensional atau ceramah panjang, materi teknis yang kompleks (seperti prinsip kerja termodinamika atau sistem hidrolik) tidak akan bermakna dan hanya akan memicu kebosanan.
+                                </p>
+                            </div>
+
+                            <!-- Section B: Tindakan dan Solusi Profesional -->
+                            <div>
+                                <h4 class="font-semibold text-[#202124] text-[15px] mb-1">Tindakan dan Solusi Profesional</h4>
+                                <p class="mb-4 text-relaxed text-sm text-justify">
+                                    Menghadapi situasi ini, saya mengambil langkah strategis untuk menyesuaikan pendekatan fasilitasi tanpa menurunkan standar kompetensi industri yang harus dicapai:
+                                </p>
+                                
+                                <div class="space-y-4">
+                                    <!-- List Item 1 -->
+                                    <div class="flex items-start">
+                                        <span class="w-8 flex-shrink-0 text-left">1</span>
+                                        <p class="text-relaxed text-sm text-justify">
+                                            <strong>Adaptasi Pendekatan <em>Deep Learning</em>:</strong> Saya merestrukturisasi alur belajar dengan mengurangi porsi teori teoretis di dalam kelas dan langsung mengalihkannya pada aktivitas berbasis penemuan (<em>inquiry</em>) di bengkel. Dengan memperbanyak porsi praktik dan aktivitas motorik melalui penggunaan <em>Jobsheet</em> terstruktur, siswa dipaksa untuk bergerak dan berdiskusi, yang secara efektif mengembalikan tingkat kewaspadaan dan fokus mereka.
+                                        </p>
+                                    </div>
+                                    
+                                    <!-- List Item 2 -->
+                                     <div class="flex items-start">
+                                        <span class="w-8 flex-shrink-0 text-left">2</span>
+                                        <p class="text-relaxed text-sm text-justify">
+                                            <strong>Penerapan Asesmen yang Fleksibel:</strong> Menyadari keterbatasan waktu dan tenaga siswa di luar jam sekolah, saya memodifikasi format pengumpulan tugas dan portofolio. Saya memastikan sistem penerimaan tugas lebih fleksibel (mendukung unggahan format Word, PDF, hingga tautan dokumen daring). Hal ini mengurangi beban administratif operasional siswa sehingga mereka bisa lebih fokus pada substansi penyelesaian masalah.
+                                        </p>
+                                    </div>
+									<div class="flex items-start">
+                                        <span class="w-8 flex-shrink-0 text-left">3</span>
+                                        <p class="text-relaxed text-sm text-justify">
+                                            <strong>Komunikasi Pesrsuasif dan Empatik:</strong> Saya memposisikan diri bukan sekadar sebagai instruktur teknis, melainkan sebagai fasilitator yang memahami kondisi mereka. Pendekatan ini membangun lingkungan belajar yang lebih aman (safe environment), di mana siswa merasa dihargai usahanya, sehingga motivasi intrinsik mereka kembali tumbuh.
+                                        </p>
+                                    </div>
+                                </div>
+								 <h4 class="font-semibold text-[#202124] text-[15px] mb-1">Refleksi Diri</h4>
+                                <p class="mb-4 text-relaxed text-sm text-justify">
+                                    Kendala ini memberikan pelajaran berharga bahwa esensi dari problem-solving seorang guru kejuruan bukan hanya mumpuni mendiagnosis kerusakan mesin, tetapi juga kepekaan dalam mendiagnosis hambatan belajar siswa. Dengan mengintegrasikan empati ke dalam desain pembelajaran (UbD), saya mampu menciptakan pengalaman belajar yang tetap bermakna (meaningful) dan mengakomodasi realitas kehidupan peserta didik.
+                                </p>
+                            </div>
+							</div>
+							 <!-- 5. Simulasi Diskusi Umpan Balik (Feedback) -->
+                        <div class="mt-8 mb-6 pt-6 border-t border-slate-100">
+                            <h4 class="text-base font-bold text-slate-800 mb-2">5. Diskusi Umpan Balik (Feedback)</h4>
+                            <p class="text-[11px] text-slate-500 mb-4 italic">Catatan: Diskusi ini merepresentasikan hasil observasi pasca-pelaksanaan siklus pembelajaran materi Sistem Pengapian.</p>
+                            <div class="overflow-x-auto bg-white rounded-xl border border-slate-200">
+                                <table class="w-full text-[11px] text-left">
+                                    <thead class="bg-slate-50 text-slate-700 border-b border-slate-200">
+                                        <tr>
+                                            <th class="p-3 font-bold uppercase">Pihak Observer / Pendidik</th>
+                                            <th class="p-3 font-bold uppercase">Catatan Umpan Balik & Refleksi</th>
+                                            <th class="p-3 font-bold uppercase">Rencana Tindak Lanjut</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-100 text-slate-600">
+                                        <tr>
+                                            <td class="p-3 font-semibold text-slate-800">Guru Pamong<br><span class="font-normal">(Imran Madjid, S.Pd., M.Si., M.Pd.)</span></td>
+                                            <td class="p-3 italic">Mengapresiasi modifikasi strategi pengajaran untuk siswa yang mengalami hambatan belajar akibat kelelahan. Penerapan <em>tutor sebaya</em> sangat efektif menjaga ritme kerja kelompok.</td>
+                                            <td class="p-3">Disarankan menambah <em>ice breaking</em> mekanikal singkat (misal: tantangan identifikasi alat) sebelum masuk ke <em>Jobsheet</em> utama.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 font-semibold text-slate-800">Dosen Pembimbing Lapangan (DPL)<br><span class="font-normal">(Ir. Wabdillah, S.Pd., M.Pd)</span></td>
+                                            <td class="p-3 italic">Penggabungan <em>Problem Based Learning</em> dan aspek <em>Mindful-Meaningful-Joyful</em> tergambar jelas pada studi kasus di LKPD. Keberpihakan pada siswa sangat kuat.</td>
+                                            <td class="p-3">Validasi pada <em>rubrik observasi</em> harus lebih spesifik. Aspek kolaborasi antarsiswa di bawah tekanan harus terukur sebagai komponen penilaian afektif.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 font-semibold text-slate-800">Mahasiswa PPG<br><span class="font-normal">(Ricky Ridman)</span></td>
+                                            <td class="p-3 italic">Sepakat dengan masukan Guru Pamong dan DPL. Dinamika kelas yang fluktuatif menyadarkan bahwa manajemen kesiapan mental sama krusialnya dengan persiapan materi teknis.</td>
+                                            <td class="p-3">Modul Ajar dan <em>Jobsheet</em> berikutnya akan direvisi dengan menyisipkan rubrik observasi keaktifan kolaborasi serta aktivitas transisi prakondisi bengkel.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+					<a href="https://drive.google.com/drive/folders/1KEdy0en3qWWv75Eq44hghCbP0CSpgjuE?usp=drive_link" target="_blank" class="mt-auto"><button class="w-full py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-download"></i> Unduh / Lihat Dokumen Lengkap
+                    </button></a>
+                </div>
+                        </div>
+                    </div>
+			
+                <!-- Analisis Siklus 2 -->
+				<div class="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-slate-700 group flex flex-col">
+                    <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-book text-2xl text-slate-700"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-5">Analisis Perangkat Pembelajaran Siklus 2</h3>
+					
+                    <h3 class="text-l font-bold text-slate-800 mb-5">1. Kaitan dengan Teori Pemahaman Peserta Didik</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Konteks Teori:</strong> Konsep ini menekankan pentingnya pengenalan mendalam terhadap latar belakang, kesiapan kognitif, dan kondisi sosio-emosional siswa sebagai fondasi perancangan instruksional yang berpihak pada peserta didik.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Refleksi Penerapan:</strong> Saat sesi tatap muka berlangsung, terlihat jelas variasi fokus dan stamina siswa di kelas; beberapa anak tampak sangat lesu dan kesulitan berkonsentrasi karena memikul tanggung jawab membantu perekonomian keluarga selepas jam sekolah.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Dampak Pedagogis:</strong> Penemuan realitas sosial ini mengubah cara pandang saya dalam mengelola kelas. Dibandingkan memaksakan transfer materi teoretis satu arah yang monoton, rancangan aktivitas diubah agar dapat memulihkan perhatian mereka tanpa menguras kapasitas pikiran secara berlebihan. Solusi ini diterapkan lewat dialog yang persuasif serta peningkatan porsi aktivitas berbasis kinestetik (gerak motorik) agar siswa tetap terjaga dan antusias berpartisipasi.
+                            </p>
+                        </div>
+						 <h3 class="text-l font-bold text-slate-800 mb-5">2. Kaitan dengan Teori Pembelajaran Mendalam (Deep Learning)</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Konteks Teori:</strong>Pembelajaran mendalam (Deep Learning) menuntut proses belajar yang bermakna (Meaningful), mendorong siswa untuk berpikir kritis, memecahkan masalah, dan mengaplikasikan pengetahuan pada konteks dunia nyata, bukan sekadar hafalan.
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Refleksi Penerapan:</strong> Kerangka kerja Understanding by Design (UbD) diimplementasikan sebagai panduan dalam menyusun peta kompetensi secara terpadu, seperti pembagian alur 6 pertemuan untuk pendalaman materi Sistem AC di SMKN 3 Makassar. Target kompetensi akhir dikunci sejak awal perencanaan sebagai jangkar pembelajaran (backward design).
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Dampak Pedagogis:</strong> Dampak positifnya, siswa tidak lagi sekadar menghafal definisi komponen seperti evaporator atau katup ekspansi secara terpisah. Mereka ditantang untuk menganalisis keterkaitan fungsi antar-komponen dalam siklus refrigerasi utuh serta melakukan penalaran klinis saat mendiagnosis kerusakan, sehingga celah ketidaksesuaian antara teori dan asesmen industri dapat dieliminasi.
+                            </p>
+                        </div>
+						 <h3 class="text-l font-bold text-slate-800 mb-5">3. Analisis Artefak Produk Rencana Pembelajaran</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Teori atau Konsep Pedagogi yang Diadopsi:</strong> Mengintegrasikan prinsip UbD dengan strategi Deep Learning serta model Problem Based Learning (PBL). Kombinasi ini memastikan seluruh landasan teori bermuara langsung pada problem otentik yang biasa dijumpai di bengkel otomotif.
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Kendala yang Terjadi:</strong> Hambatan utama yang muncul adalah fluktuasi energi psikologis siswa akibat kelelahan fisik dari aktivitas luar sekolah, serta tantangan dalam menyetarakan pemahaman konsep kelistrikan dan tekanan mekanis AC yang cukup rumit.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Solusi dan Pembelajaran:</strong> Menjabarkan konsep abstrak ke dalam lembar kerja interaktif (LKPD) dan panduan praktikum (Jobsheet) yang berbasis penemuan masalah (inquiry). Hasil pengerjaan tugas pun dibuat adaptif; siswa tidak dikunci pada satu bentuk laporan kerja, melainkan diberi kebebasan mengumpulkan portofolio dalam berbagai format digital melalui platform Google Drive sekolah demi mengakomodasi keterbatasan waktu mereka.
+                            </p>
+                        </div>
+						 <h3 class="text-l font-bold text-slate-800 mb-4">4. Kendala yang Terjadi dan Solusi Pedagogis (Problem-Solving)</h3>
+                        
+                        <!-- Struktur Desain Diperbarui Sesuai Gambar -->
+                        <div class="text-[#202124] text-[15px] leading-[1.6] mb-6 font-sans">
+                            <!-- Section A: Analisis Berdasarkan Teori -->
+                            <div class="mb-5">
+                                <h4 class="font-semibold text-[#202124] text-[15px] mb-1">Konteks Kendala</h4>
+                                <p class="text-relaxed text-sm text-justify">
+                                    Tantangan terbesar dalam pelaksanaan pembelajaran ini bukan terletak pada penyampaian substansi teknis otomotif, melainkan pada pengelolaan faktor emosional dan kesiapan belajar anak. Melalui pendekatan individual dan asesmen awal non-kognitif, terungkap bahwa penurunan motivasi dan rasa kantuk beberapa siswa dipicu oleh beban kerja fisik membantu keluarga setelah pulang sekolah.
+                                </p>
+                            </div>
+							<h4 class="font-semibold text-[#202124] text-[15px] mb-1">Analisis Berdasarkan Teori</h4>
+                                <p class="text-relaxed text-sm text-justify">
+                                   Mengacu pada teori Pemahaman Peserta Didik, kelelahan fisik berdampak langsung pada penurunan performa memori kerja (working memory) siswa. Memaksa mereka mendengarkan ceramah teoretis yang panjang mengenai hukum termodinamika atau diagram sistem hidrolik hanya akan memicu kejenuhan akademis dan membuat pembelajaran kehilangan maknanya.
+                                </p>
+                            </div>
+
+                            <!-- Section B: Tindakan dan Solusi Profesional -->
+                            <div>
+                                <h4 class="font-semibold text-[#202124] text-[15px] mb-1">Tindakan dan Solusi Profesional</h4>
+                                <p class="mb-4 text-relaxed text-sm text-justify">
+                                    Menghadapi situasi ini, saya mengambil langkah strategis untuk menyesuaikan pendekatan fasilitasi tanpa menurunkan standar kompetensi industri yang harus dicapai:
+                                </p>
+                                
+                                <div class="space-y-4">
+                                    <!-- List Item 1 -->
+                                    <div class="flex items-start">
+                                        <span class="w-8 flex-shrink-0 text-left">1</span>
+                                        <p class="text-relaxed text-sm text-justify">
+                                            <strong>Adaptasi Pendekatan <em>Deep Learning</em>:</strong> Saya merestrukturisasi manajemen kelas dengan memangkas durasi paparan teori di dalam ruangan dan langsung mengalihkan siswa ke area bengkel praktikum memakai Jobsheet terstruktur. Aktivitas fisik dan diskusi kelompok selama penanganan unit kendaraan efektif memulihkan kesigapan dan konsentrasi mereka.
+                                        </p>
+                                    </div>
+                                    
+                                    <!-- List Item 2 -->
+                                     <div class="flex items-start">
+                                        <span class="w-8 flex-shrink-0 text-left">2</span>
+                                        <p class="text-relaxed text-sm text-justify">
+                                            <strong>Penerapan Asesmen yang Fleksibel:</strong> Menyadari sempitnya waktu luang siswa di rumah, saya memberikan kelonggaran dalam pengumpulan portofolio tugas (menerima berkas digital berupa Word, PDF, hingga tautan dokumen daring). Hal ini meminimalkan hambatan administratif sehingga siswa bisa fokus pada esensi pemecahan masalah.
+                                        </p>
+                                    </div>
+									<div class="flex items-start">
+                                        <span class="w-8 flex-shrink-0 text-left">3</span>
+                                        <p class="text-relaxed text-sm text-justify">
+                                            <strong>Komunikasi Pesrsuasif dan Empatik:</strong> Saya menempatkan diri sebagai fasilitator yang ramah dan memahami kondisi personal mereka, sehingga tercipta lingkungan belajar yang aman (safe environment) yang mampu menumbuhkan kembali motivasi belajar intrinsik siswa.
+                                        </p>
+                                    </div>
+                                </div>
+								 <h4 class="font-semibold text-[#202124] text-[15px] mb-1">Refleksi Diri</h4>
+                                <p class="mb-4 text-relaxed text-sm text-justify">
+                                    Pengalaman ini menegaskan bahwa tugas utama guru produktif tidak hanya mendiagnosis kerusakan mekanis kompresor AC, melainkan juga harus peka dalam mengidentifikasi hambatan mental dalam belajar. Melalui sentuhan empati pada kerangka UbD, esensi pembelajaran yang bermakna tetap dapat tersampaikan di tengah keterbatasan realitas hidup siswa.
+                                </p>
+                            </div>
+							</div>
+							 <!-- 5. Simulasi Diskusi Umpan Balik (Feedback) -->
+                        <div class="mt-8 mb-6 pt-6 border-t border-slate-100">
+                            <h4 class="text-base font-bold text-slate-800 mb-2">5. Diskusi Umpan Balik (Feedback)</h4>
+                            <p class="text-[11px] text-slate-500 mb-4 italic">Catatan: Diskusi ini merepresentasikan hasil observasi pasca-pelaksanaan siklus pembelajaran materi Sistem Pengapian.</p>
+                            <div class="overflow-x-auto bg-white rounded-xl border border-slate-200">
+                                <table class="w-full text-[11px] text-left">
+                                    <thead class="bg-slate-50 text-slate-700 border-b border-slate-200">
+                                        <tr>
+                                            <th class="p-3 font-bold uppercase">Pihak Observer / Pendidik</th>
+                                            <th class="p-3 font-bold uppercase">Catatan Umpan Balik & Refleksi</th>
+                                            <th class="p-3 font-bold uppercase">Rencana Tindak Lanjut</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-100 text-slate-600">
+                                        <tr>
+                                            <td class="p-3 font-semibold text-slate-800">Guru Pamong<br><span class="font-normal">(Imran Madjid, S.Pd., M.Si., M.Pd.)</span></td>
+                                            <td class="p-3 italic">Langkah memindahkan fokus belajar dari kelas ke aktivitas bengkel menggunakan Jobsheet pemeriksaan sangat tepat dilakukan. Ini merupakan solusi nyata untuk mengatasi rasa kantuk dan memulihkan fokus siswa yang kelelahan karena harus bekerja paruh waktu membantu keluarga selepas sekolah.</td>
+                                            <td class="p-3 italic">Untuk menyiasati ketimpangan energi antar-siswa, optimalkan strategi pendampingan kelompok melalui metode Tutor Sebaya. Cobalah pasangkan siswa yang memiliki hambatan belajar/kelelahan dengan siswa kategori pencapaian tinggi agar terjadi transfer pengetahuan dan kerja sama tim yang solid sesuai dengan SOP bengkel.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 font-semibold text-slate-800">Dosen Pembimbing Lapangan (DPL)<br><span class="font-normal">(Ir. Wabdillah, S.Pd., M.Pd)</span></td>
+                                            <td class="p-3 italic">Penerapan Backward Design dari kerangka UbD sudah terlihat jelas, di mana Anda berhasil menyelaraskan tujuan akhir berupa penalaran klinis dengan bukti evaluasi portofolio yang fleksibel. Secara teori Deep Learning, kelonggaran format tugas digital ini menunjukkan keberpihakan yang kuat pada kondisi nyata siswa.</td>
+                                            <td class="p-3 italic">Kelonggaran tugas digital di Google Drive sudah sangat baik. Namun, untuk ke depannya, pastikan Anda juga memperkuat penilaian formatif langsung (on-the-spot assessment) menggunakan rubrik observasi singkat saat praktikum berlangsung. Tujuannya agar konfirmasi keterampilan siswa saat mengoperasikan alat seperti manifold gauge atau vacuum pump bisa divalidasi dan diarahkan seketika di bengkel tanpa harus menunggu tugas portofolio terkumpul.</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 font-semibold text-slate-800">Mahasiswa PPG<br><span class="font-normal">(Ricky Ridman)</span></td>
+                                            <td class="p-3 italic">Saya sepenuhnya setuju dengan evaluasi dari Guru Pamong dan DPL. Dinamika kelas yang fluktuatif menyadarkan saya bahwa mengelola kesiapan mental dan emosional siswa di bengkel otomotif sama krusialnya dengan penguasaan materi teknis kelistrikan maupun sistem refrigerasi itu sendiri.</td>
+                                            <td class="p-3 italic">Pada siklus pembelajaran berikutnya, saya akan merevisi Modul Ajar dan Jobsheet dengan menyisipkan metode Tutor Sebaya untuk menyeimbangkan dinamika kelompok. Saya juga akan mengintegrasikan lembar observasi penilaian formatif langsung di area kerja serta merancang aktivitas ice breaking mekanikal singkat sebagai pengkondisian awal fokus siswa sebelum praktik dimulai.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+	                <a href="https://drive.google.com/drive/folders/1QsDfjuoL1C-9nyuAOXrDJgE0hWKkz_wg?usp=sharing" target="_blank" class="mt-auto"><button class="w-full py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-download"></i> Unduh / Lihat Dokumen Lengkap
+                    </button></a>
+                </div>
+				</div>
+			
+                <!-- Analisis Siklus 3 -->
+				<div class="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-slate-700 group flex flex-col">
+                    <div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-book text-2xl text-slate-700"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-5">Analisis Perangkat Pembelajaran Siklus 3</h3>
+					
+                    <h3 class="text-l font-bold text-slate-800 mb-5">1. Kaitan dengan Teori Pemahaman Peserta Didik</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Konteks Teori:</strong> Konsep ini menekankan pentingnya pengenalan mendalam terhadap latar belakang, kesiapan kognitif, dan kondisi sosio-emosional siswa sebagai fondasi perancangan instruksional yang berpihak pada peserta didik.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Refleksi Penerapan:</strong> Melalui asesmen non-kognitif di awal pembelajaran, saya menggali informasi krusial terkait aktivitas peserta didik setelah pulang sekolah hingga tidur malam. Saat sesi tatap muka berlangsung, terlihat jelas variasi fokus dan stamina siswa di kelas beberapa anak tampak lesu dan kesulitan berkonsentrasi yang terindikasi karena memikul tanggung jawab membantu perekonomian keluarga selepas jam sekolah.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Dampak Pedagogis:</strong> Penemuan realitas sosial ini mengubah cara pandang saya dalam mengelola kelas. Dibandingkan memaksakan transfer materi teoretis satu arah yang monoton mengenai gelombang elektromagnetik dan kelistrikan, rancangan aktivitas diubah agar dapat memulihkan perhatian mereka. Solusi ini diterapkan lewat dialog yang persuasif, pembagian peran dalam kelompok (Joyful), serta peningkatan porsi aktivitas berbasis kinestetik (gerak motorik) melalui praktikum agar siswa tetap terjaga dan antusias berpartisipasi.
+                            </p>
+                        </div>
+						 <h3 class="text-l font-bold text-slate-800 mb-5">2. Kaitan dengan Teori Pembelajaran Mendalam (Deep Learning)</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Konteks Teori:</strong>Pembelajaran mendalam (Deep Learning) menuntut proses belajar yang bermakna (Meaningful), mendorong siswa untuk berpikir kritis, memecahkan masalah, dan mengaplikasikan pengetahuan pada konteks dunia nyata, bukan sekadar hafalan.
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Refleksi Penerapan:</strong> Modul ini secara eksplisit mengintegrasikan pendekatan Deep Learning (Mindful, Meaningful, Joyful). Target kompetensi akhir telah dikunci sejak awal melalui pertanyaan pemantik yang berorientasi pada industri, seperti memastikan sistem audio selalu prima dan transisi ke sistem digital modern.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Dampak Pedagogis:</strong> Dampak positifnya, siswa tidak lagi sekadar menghafal definisi komponen seperti Head Unit atau Power Amplifier secara terpisah. Melalui sintaks Problem Based Learning (PBL), mereka ditantang untuk menganalisis alur kerja sinyal audio dari antena hingga ke speaker serta melakukan penalaran klinis saat mendiagnosis keluhan "sistem audio mobil tiba-tiba mati total". Hal ini mengeliminasi celah ketidaksesuaian antara teori kelas dan situasi riil di bengkel.
+                            </p>
+                        </div>
+						 <h3 class="text-l font-bold text-slate-800 mb-5">3. Analisis Artefak Produk Rencana Pembelajaran</h3>
+                    <div class="space-y-4 mb-6">
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Teori atau Konsep Pedagogi yang Diadopsi:</strong> Mengintegrasikan pendekatan Deep Learning dengan model pembelajaran Problem Based Learning (PBL). Kombinasi ini memastikan seluruh landasan teori bermuara langsung pada problem otentik yang biasa dijumpai di bengkel otomotif.
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Kendala yang Terjadi:</strong> Hambatan utama yang muncul adalah fluktuasi energi psikologis siswa akibat kelelahan fisik dari aktivitas luar sekolah, serta tantangan kognitif dalam menganalisis kesalahan sambungan (polaritas terbalik) pada wiring diagram sistem audio yang cukup rumit.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-2 h-2 rounded-full border-2 border-slate-700 mt-1.5 flex-shrink-0 bg-transparent"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Solusi dan Pembelajaran:</strong> Menjabarkan konsep abstrak ke dalam lembar kerja interaktif (LKPD) dan panduan praktikum (Jobsheet) berbasis penemuan masalah. Hasil pengerjaan tugas dibuat adaptif; siswa diberi kebebasan mengumpulkan portofolio proyek dan laporan dalam berbagai format digital melalui platform Google Drive kelas  demi mengakomodasi keterbatasan waktu mereka di rumah.
+                            </p>
+                        </div>
+						 <h3 class="text-l font-bold text-slate-800 mb-4">4. Kendala yang Terjadi dan Solusi Pedagogis (Problem-Solving)</h3>
+                        
+                        <!-- Struktur Desain Diperbarui Sesuai Gambar -->
+                        <div class="text-[#202124] text-[15px] leading-[1.6] mb-6 font-sans">
+                            <!-- Section A: Analisis Berdasarkan Teori -->
+                            <div class="mb-5">
+                                <h4 class="font-semibold text-[#202124] text-[15px] mb-1">Konteks Kendala</h4>
+                                <p class="text-relaxed text-sm text-justify">
+                                    Tantangan terbesar dalam pelaksanaan pembelajaran ini bukan hanya pada penyampaian substansi teknis kelistrikan audio, melainkan pada pengelolaan faktor emosional peserta didik. Melalui asesmen awal, terungkap bahwa penurunan motivasi dan rasa kantuk beberapa siswa dipicu oleh beban kerja fisik di luar sekolah.
+                                </p>
+                            </div>
+							<h4 class="font-semibold text-[#202124] text-[15px] mb-1">Analisis Berdasarkan Teori</h4>
+                                <p class="text-relaxed text-sm text-justify">
+                                   Mengacu pada teori Pemahaman Peserta Didik, kelelahan fisik berdampak langsung pada penurunan performa memori kerja (working memory). Memaksa mereka mendengarkan ceramah teoretis yang panjang mengenai impedansi speaker atau sinyal output hanya akan memicu kejenuhan akademis.
+                                </p>
+                            </div>
+
+                            <!-- Section B: Tindakan dan Solusi Profesional -->
+                            <div>
+                                <h4 class="font-semibold text-[#202124] text-[15px] mb-1">Tindakan dan Solusi Profesional</h4>
+                                <p class="mb-4 text-relaxed text-sm text-justify">
+                                    Menghadapi situasi ini, saya mengambil langkah strategis:
+                                </p>
+                                
+                                <div class="space-y-4">
+                                    <!-- List Item 1 -->
+                                    <div class="flex items-start">
+                                        <span class="w-8 flex-shrink-0 text-left">1</span>
+                                        <p class="text-relaxed text-sm text-justify">
+                                            <strong>Adaptasi Pendekatan <em>Deep Learning</em>:</strong> Saya memangkas durasi paparan teori di dalam kelas dan langsung mengalihkan siswa ke area praktik menggunakan Jobsheet Pemeriksaan Sistem Audio Video. Aktivitas fisik menggunakan alat ukur seperti multimeter untuk menguji kontinuitas kabel dan hambatan speaker  efektif memulihkan kesigapan mereka.
+                                        </p>
+                                    </div>
+                                    
+                                    <!-- List Item 2 -->
+                                     <div class="flex items-start">
+                                        <span class="w-8 flex-shrink-0 text-left">2</span>
+                                        <p class="text-relaxed text-sm text-justify">
+                                            <strong>Penerapan Asesmen yang Fleksibel:</strong> Menyadari sempitnya waktu siswa di rumah, pengumpulan LKPD dan laporan perbaikan difasilitasi sepenuhnya secara daring via tautan Google Drive. Ini meminimalkan beban administratif.
+                                        </p>
+                                    </div>
+									<div class="flex items-start">
+                                        <span class="w-8 flex-shrink-0 text-left">3</span>
+                                        <p class="text-relaxed text-sm text-justify">
+                                            <strong>Komunikasi Pesrsuasif dan Empatik:</strong> Memposisikan diri sebagai fasilitator yang berkeliling memantau dengan memberikan pertanyaan arahan (probing) secara suportif, menciptakan suasana Joyful yang aman bagi siswa untuk berpendapat.
+                                        </p>
+                                    </div>
+                                </div>
+								 <h4 class="font-semibold text-[#202124] text-[15px] mb-1">Refleksi Diri</h4>
+                                <p class="mb-4 text-relaxed text-sm text-justify">
+                                    Pengalaman ini menegaskan bahwa tugas utama pendidik vokasi tidak hanya mengajarkan cara memeriksa fuse atau konektor RCA, melainkan harus peka mengidentifikasi hambatan mental siswa. Empati adalah kunci agar esensi pembelajaran tetap bermakna.
+                                </p>
+                            </div>
+							</div>
+							 <!-- 5. Simulasi Diskusi Umpan Balik (Feedback) -->
+                        <div class="mt-8 mb-6 pt-6 border-t border-slate-100">
+                            <h4 class="text-base font-bold text-slate-800 mb-2">5. Diskusi Umpan Balik (Feedback)</h4>
+                            <p class="text-[11px] text-slate-500 mb-4 italic">Catatan: Diskusi ini merepresentasikan hasil observasi pasca-pelaksanaan siklus pembelajaran materi Sistem Audio Video Kendaraan Ringan.
+                            <div class="overflow-x-auto bg-white rounded-xl border border-slate-200">
+                                <table class="w-full text-[11px] text-left">
+                                    <thead class="bg-slate-50 text-slate-700 border-b border-slate-200">
+                                        <tr>
+                                            <th class="p-3 font-bold uppercase">Pihak Observer / Pendidik</th>
+                                            <th class="p-3 font-bold uppercase">Catatan Umpan Balik & Refleksi</th>
+                                            <th class="p-3 font-bold uppercase">Rencana Tindak Lanjut</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-100 text-slate-600">
+                                        <tr>
+                                            <td class="p-3 font-semibold text-slate-800">Guru Pamong<br><span class="font-normal">(Imran Madjid, S.Pd., M.Si., M.Pd.)</span></td>
+                                            <td class="p-3 italic">Langkah memindahkan fokus dari kelas teoretis ke aktivitas praktikum menggunakan Jobsheet Pemeriksaan Sistem Audio sangat tepat. Ini solusi nyata mengatasi kantuk siswa yang kelelahan bekerja paruh waktu.
+                                            <td class="p-3 italic">Untuk menyiasati ketimpangan pemahaman dan energi antar-siswa, optimalkan strategi Tutor Sebaya. Pasangkan siswa reguler/hambatan belajar dengan siswa pencapaian tinggi agar terjadi kolaborasi saat merangkai wiring audio.
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 font-semibold text-slate-800">Dosen Pembimbing Lapangan (DPL)<br><span class="font-normal">(Ir. Wabdillah, S.Pd., M.Pd)</span></td>
+                                            <td class="p-3 italic">Penyelarasan Problem Based Learning dengan evaluasi portofolio di Google Drive  sudah sangat baik dan menunjukkan keberpihakan pada siswa. Secara teori Deep Learning, ini mengakomodasi beban mental mereka.
+                                            <td class="p-3 italic">Perkuat penilaian formatif langsung (on-the-spot assessment) menggunakan rubrik observasi  saat praktikum. Tujuannya agar konfirmasi keterampilan (misal: kalibrasi multimeter saat mengukur hambatan antena ) bisa divalidasi seketika tanpa menunggu tugas terkumpul.
+                                        </tr>
+                                        <tr>
+                                            <td class="p-3 font-semibold text-slate-800">Mahasiswa PPG<br><span class="font-normal">(Ricky Ridman)</span></td>
+                                            <td class="p-3 italic">Saya sepenuhnya setuju. Dinamika kelas menyadarkan saya bahwa mengelola kesiapan mental siswa di bengkel sama krusialnya dengan penguasaan analisis komponen head unit dan amplifier.
+                                            <td class="p-3 italic">Pada siklus berikutnya, saya akan merevisi Modul Ajar dengan menyisipkan detail pembagian Tutor Sebaya. Saya juga akan mengintegrasikan lembar observasi on-the-spot dan memberikan ice breaking singkat sebelum praktik kelistrikan dimulai.
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+	                <a href="https://drive.google.com/drive/folders/1MuDaFH1El3gSp0-VPrPQTd7yavSMfu3Q?usp=sharing" target="_blank" class="mt-auto"><button class="w-full py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-download"></i> Unduh / Lihat Dokumen Lengkap
+                    </button></a>
+                </div>
+				</div>
+			
+            <!-- Cards Grid Layout untuk 4 Aspek -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-10">
+                
+                <!-- Card A: Kendala -->
+                <div class="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-red-400 group">
+                    <div class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-triangle-exclamation text-2xl text-red-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-6">A. Kendala Penyusunan</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full border border-slate-600 mt-2 flex-shrink-0"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Heterogenitas Siswa:</strong> Kendala paling mendasar yang dihadapi adalah rumitnya melakukan pemetaan secara menyeluruh terhadap kesiapan dan karakteristik belajar anak. Pada kelas tempat PPL berlangsung, terdapat variasi yang sangat lebar terkait gaya belajar maupun kapasitas kognitif peserta didik.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full border border-slate-600 mt-2 flex-shrink-0"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Tantangan Diferensiasi:</strong> Walaupun asesmen diagnostik sudah dijalankan pada tahap awal, proses mengintegrasikan strategi pembelajaran berdiferensiasi baik pada aspek proses maupun konten ke dalam penyusunan Lembar Kerja Peserta Didik (LKPD) dan Modul Ajar terbukti cukup rumit.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full border border-slate-600 mt-2 flex-shrink-0"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Efisiensi Waktu:</strong> Mencari titik temu dalam meracik materi bagi siswa yang cepat tanggap (fast learner) dan yang lebih lambat (slow learner) membutuhkan usaha ekstra. Akibatnya, penyusunan skenario aktivitas dan instrumen belajar menghabiskan durasi yang jauh melebihi estimasi awal.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card B: Teori/Konsep -->
+                <div class="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-blue-500 group">
+                    <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-book-open text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-6">B. Adopsi Teori & Pedagogi</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full border border-slate-600 mt-2 flex-shrink-0"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Landasan Filsafat:</strong> Seluruh perangkat pembelajaran yang disusun berpijak pada aliran filsafat Konstruktivisme. Hal ini kemudian diaplikasikan di dalam kelas dengan menggunakan model Problem-Based Learning (PBL).
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full border border-slate-600 mt-2 flex-shrink-0"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Konsep Pedagogi:</strong> Terdapat pemahaman yang kuat bahwa peserta didik membentuk pemahamannya secara mandiri lewat pengalaman langsung dan pemecahan masalah, alih-alih hanya menjadi wadah pasif yang sekadar menerima informasi dari guru.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full border border-slate-600 mt-2 flex-shrink-0"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Penerapan pada Produk:</strong> Modul Ajar dan LKPD dibuka dengan penyajian masalah yang dekat dengan kehidupan nyata (kontekstual). Selanjutnya, LKPD difungsikan sebagai instrumen panduan investigasi mandiri dan diskusi, yang pada akhirnya menggeser peran guru dari sekadar penceramah menjadi seorang fasilitator pendamping.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card C: Keberhasilan -->
+                <div class="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-emerald-500 group">
+                    <div class="w-12 h-12 bg-emerald-50 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-chart-line text-2xl text-emerald-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-6">C. Faktor Keberhasilan</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full border border-slate-600 mt-2 flex-shrink-0"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Media Interaktif:</strong> Kunci utama kesuksesan pembelajaran ini terletak pada penggunaan sarana visual dan interaktif. Langkah ini sukses mendobrak kebiasaan pasif siswa yang sebelumnya terlalu sering dijejali dengan metode ceramah konvensional.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full border border-slate-600 mt-2 flex-shrink-0"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Peningkatan Atensi:</strong> Tingkat perhatian peserta didik meningkat secara signifikan sepanjang kegiatan belajar berkat diterapkannya elemen permainan (gamification) serta tayangan video animasi edukatif.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full border border-slate-600 mt-2 flex-shrink-0"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Konkretisasi Materi:</strong> Media pembelajaran yang digunakan berhasil membuat konsep-konsep abstrak menjadi lebih nyata dan mudah dipahami. Dampaknya, rasa penasaran siswa berhasil dibangkitkan mulai dari tahap apersepsi sampai kegiatan penutup.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card D: Perubahan/Adaptasi -->
+                <div class="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-amber-500 group">
+                    <div class="w-12 h-12 bg-amber-50 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-arrows-spin text-2xl text-amber-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-6">D. Adaptasi Situasional</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full border border-slate-600 mt-2 flex-shrink-0"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Modifikasi LKPD:</strong> Guna memfasilitasi kelas yang tingkat kesiapan kognitifnya belum optimal, instruksi di dalam LKPD diubah menjadi lebih terstruktur (langkah demi langkah). Bimbingan bertahap (scaffolding) juga diberikan dengan porsi yang cukup demi mencegah siswa merasa putus asa atau frustrasi.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full border border-slate-600 mt-2 flex-shrink-0"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Penyesuaian Bahan Bacaan:</strong> Pilihan kata atau diksi pada teks bacaan di dalam Modul Ajar perlu disederhanakan. Penyesuaian ini bertujuan agar teks tersebut selaras dengan kemampuan kebahasaan peserta didik saat ini sehingga lebih gampang dicerna.
+                            </p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full border border-slate-600 mt-2 flex-shrink-0"></span>
+                            <p class="text-slate-700 leading-relaxed text-sm text-justify">
+                                <strong class="font-semibold text-slate-900">Fleksibilitas Asesmen:</strong> Terdapat urgensi untuk menyesuaikan kembali rubrik asesmen formatif. Modifikasi ini dilakukan agar Kriteria Ketercapaian Tujuan Pembelajaran (KKTP) atau target kompetensi yang diharapkan bisa lebih realistis dan sejalan dengan kondisi awal kesiapan belajar anak.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. LAMPIRAN PENILAIAN -->
+        <section id="penilaian" class="page-section hidden opacity-0">
+            <div class="mb-10 text-center max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-900 mb-3">Lampiran Penilaian PPL</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto rounded-full mb-6"></div>
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded text-left shadow-sm">
+                    <p class="text-blue-800 text-sm">
+                        <strong>Keterangan:</strong> Bagian ini berisi hasil penilaian otentik dari Guru Pamong terkait rancangan perangkat pembelajaran (Lampiran 7) dan praktik mengajar di kelas (Lampiran 8) yang telah dilaksanakan selama 3 siklus.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Lampiran 7 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col h-full">
+                    <div class="flex items-center gap-4 border-b pb-4 mb-4">
+                        <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                            <i class="fa-solid fa-file-signature text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-800">Lampiran 7</h3>
+                            <p class="text-sm text-slate-500">Instrumen Penilaian Perangkat Pembelajaran</p>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <p class="text-sm text-slate-600 mb-4">Dokumen ini memuat nilai dan catatan dari Guru Pamong terhadap Modul Ajar/RPP, Media, LKPD, dan Instrumen Penilaian yang disusun pada siklus 1 hingga 3.</p>
+                        
+                        <!-- Placeholder Tabel Sederhana (opsional, bisa diganti gambar atau embed PDF) -->
+                        <div class="overflow-x-auto mb-4 border rounded-lg">
+                            <table class="min-w-full divide-y divide-gray-200 text-sm">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-4 py-2 text-left font-medium text-gray-500">Siklus</th>
+                                        <th class="px-4 py-2 text-left font-medium text-gray-500">Materi</th>
+                                        <th class="px-4 py-2 text-left font-medium text-gray-500">Nilai</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-4 py-2">Siklus 1</td>
+                                        <td class="px-4 py-2">Sistem Pengapian</td>
+                                        <td class="px-4 py-2 font-semibold text-primary">A (90)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2">Siklus 2</td>
+                                        <td class="px-4 py-2">Sistem Air Conditioning</td>
+                                        <td class="px-4 py-2 font-semibold text-primary">A (92)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2">Siklus 3</td>
+                                        <td class="px-4 py-2">Sistem Audio Vidio</td>
+                                        <td class="px-4 py-2 font-semibold text-primary">A (95)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1kqLtL0-D64z64dAf4TrD9ny10-hhS5Du?usp=sharing"><button class="w-full mt-auto py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-download"></i> Unduh / Lihat Dokumen Lengkap
+                    </button></a>
+                </div>
+
+                <!-- Lampiran 8 -->
+                <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 flex flex-col h-full">
+                    <div class="flex items-center gap-4 border-b pb-4 mb-4">
+                        <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center text-secondary">
+                            <i class="fa-solid fa-chalkboard-user text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-slate-800">Lampiran 8</h3>
+                            <p class="text-sm text-slate-500">Instrumen Penilaian Praktik Mengajar</p>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <p class="text-sm text-slate-600 mb-4">Dokumen ini berisi hasil evaluasi keterampilan mengajar (keterampilan membuka pelajaran, penguasaan materi, pengelolaan kelas) yang dinilai oleh Guru Pamong.</p>
+                        
+                        <div class="overflow-x-auto mb-4 border rounded-lg">
+                            <table class="min-w-full divide-y divide-gray-200 text-sm">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-4 py-2 text-left font-medium text-gray-500">Siklus</th>
+                                        <th class="px-4 py-2 text-left font-medium text-gray-500">Fokus Keterampilan</th>
+                                        <th class="px-4 py-2 text-left font-medium text-gray-500">Nilai</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-4 py-2">Siklus 1</td>
+                                        <td class="px-4 py-2">Pengelolaan Kelas</td>
+                                        <td class="px-4 py-2 font-semibold text-secondary">A (88)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2">Siklus 2</td>
+                                        <td class="px-4 py-2">Penggunaan Media</td>
+                                        <td class="px-4 py-2 font-semibold text-secondary">A (93)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-4 py-2">Siklus 3</td>
+                                        <td class="px-4 py-2">Evaluasi Pembelajaran</td>
+                                        <td class="px-4 py-2 font-semibold text-secondary">A (96)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1akkyBvYf8IeodfgQDiKwnfI_liirJySI?usp=sharing" target="_blank"><button class="w-full mt-auto py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-download"></i> Unduh / Lihat Dokumen Lengkap
+                    </button></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. MODEL GURU YANG DITUJU -->
+        <section id="model-guru" class="page-section hidden opacity-0">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl font-bold text-slate-900 mb-3">Model Guru yang Dituju</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-600 font-serif max-w-2xl mx-auto">
+Sebagai pendidik, saya berpegang teguh pada prinsip pendekatan humanis, perbaikan berkelanjutan melalui refleksi, dan keberanian untuk berinovasi.
+Berbekal pemahaman utuh atas empat kompetensi inti, seluruh dedikasi saya arahkan untuk menghadirkan pengalaman belajar yang memerdekakan murid, memupuk kebiasaan berpikir tingkat tinggi yang mendalam, serta membangun kerja sama lintas pihak yang bersinergi.
+
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Misi -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:-translate-y-2 transition-transform duration-300">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-white mb-6 shadow-lg shadow-blue-500/30">
+                        <i class="fa-solid fa-rocket text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Misi Pribadi</h3>
+                    <ul class="text-left space-y-3 text-slate-600 text-sm">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-secondary mt-1"></i>
+                            <span>Merancang dan melaksanakan proses belajar yang berfokus pada kebutuhan murid, relevan dengan kehidupan, serta memberi kesempatan yang sama bagi seluruh murid untuk berkembang.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-secondary mt-1"></i>
+                            <span>Menciptakan suasana kelas yang aman, nyaman, dan memberi semangat belajar agar setiap murid betah mengikuti pembelajaran.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-secondary mt-1"></i>
+                            <span>Menggunakan metode yang lebih mendorong murid untuk terlibat langsung, bertanya, berdiskusi, dan mempraktikkan materi, bukan hanya mendegarkan guru menjelaskan.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Kompetensi -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:-translate-y-2 transition-transform duration-300">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary text-white mb-6 shadow-lg shadow-teal-500/30">
+                        <i class="fa-solid fa-brain text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Kompetensi Inti</h3>
+                    <ul class="text-left space-y-3 text-slate-600 text-sm">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-primary mt-1"></i>
+                            <span><strong>Pedagogik:</strong> Memahami prinsip-prinsip pembelajaran serta gaya belajar dan kebutuhan setiap murid yang berbeda-beda.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-primary mt-1"></i>
+                            <span><strong>Profesional:</strong>Terus menambah ilmu, wawasan dan keterampilan di bidang otomotif sesuai perkembangan industri dan teknologi otomotif terbaru, baik dari sistem konvensional sampai ke sistem EFI ataupun industri mobil listrik.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-primary mt-1"></i>
+                            <span><strong>Digital:</strong> Mampu membuat bahan ajar berbasis teknologi yang menarik dan melibatkan murid, seperti simulasi, kuis online maupun video pembelajaran.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Karakter -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:-translate-y-2 transition-transform duration-300">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent text-white mb-6 shadow-lg shadow-amber-500/30">
+                        <i class="fa-solid fa-heart text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-4">Karakter Pendidik</h3>
+                    <ul class="text-left space-y-3 text-slate-600 text-sm">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-accent mt-1"></i>
+                            <span><strong>Reflektif:</strong> Terbiasa melakukan intropeksi setelah mengajar, lalu menjadikan kekurangan sebagai bahan untuk terus meningkatkan kualitas pembelajaran kedepan.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-accent mt-1"></i>
+                            <span><strong>Empati:</strong> Peka dan menghargai kondisi, budaya, serta masalah personal yang dihadapi murid, sehingga mendapat perlakuan dan tidak menghakimi.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-accent mt-1"></i>
+                            <span><strong>Inovatif:</strong> Terbuka terhadap perubahan dan tidak takut bereksperimen dengan strategi atau media pembelajaran terbaru yang sesuai kebutuhan murid dan industri.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+		
+		<!-- 6. Refleksi -->
+         <section id="refleksi" class="page-section hidden opacity-0">
+            <div class="mb-10 text-center max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold text-slate-900 mb-3">Refleksi Akhir Individu & Filosofi Mengajar</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-600 font-serif">
+                    Bagian ini berisi hasil evaluasi diri dan pandangan pendidikan saya yang akan saya terapkan saat praktik mengajar di PPL mandiri serta menjadi pedoman saya saat berprofesi sebagai guru nantinya.
+                </p>
+            </div>
+			<!-- <div class="grid grid-cols-1 md:grid-cols-1 gap-6 lg:gap-8"> -->
+				<div class="bg-white rounded-xl p-8 mb-6 shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-black-400 group">
+                    <div class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-book text-2xl text-red-500"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-3">Refleksi Pribadi</h3>
+                    <p class="text-justify-600 leading-relaxed text-sm">
+                        Melaksanakan Praktik Pengalaman Lapangan (PPL) Terbimbing di SMK Negeri 3 Makassar, khususnya pada program keahlian Teknik Kendaraan Ringan, menjadi titik balik transformatif yang krusial bagi perkembangan karir saya sebagai calon guru. Pengalaman nyata ini tidak sekadar menguji modal akademis yang saya miliki, tetapi juga mengasah kepekaan sosial, kemampuan beradaptasi, serta komitmen total demi kemajuan belajar peserta didik.
+                    <h3 class="text-l font-bold text-slate-800 mb-3">1. Capaian Pembelajaran Selama Tahapan PPL Terbimbing.</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm leading-relaxed text-justify">
+						Sepanjang fase PPL Terbimbing, saya berhasil menyerap berbagai prinsip fundamental dalam merancang dan mengeksekusi pembelajaran yang relevan bagi siswa sekolah vokasi. Secara khusus, saya mendalami strategi mengemas materi teknis yang rumit lewat pendekatan Deep Learning (Pembelajaran Mendalam).
+
+Saat menyusun modul ajar dan mengelola kelas untuk materi Sistem Pengapian, Sistem AC, serta Sistem Audio Video, saya memahami bahwa kunci keberhasilan instruksional ada pada sinkronisasi antara teori, praktik di bengkel, dan metode asesmen.
+
+Selain itu, saya juga dilatih untuk melakukan analisis artefak rencana pembelajaran secara sistematis. Proses ini meliputi pencatatan kendala riil di lapangan serta evaluasi kritis terhadap teori pedagogi yang diterapkan. Pengalaman berharga lainnya adalah pemanfaatan teknologi, seperti penggunaan software simulasi sebelum siswa berhadapan dengan komponen fisik, serta penyusunan e-portofolio berbasis tautan dan berbagai format berkas yang fleksibel.
+					<h3 class="text-l font-bold text-slate-800 mb-3">2. Tantangan di Lapangan dan Solusi yang Diterapkan.</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm leading-relaxed text-justify">
+						Hambatan terbesar yang saya temui bukan terletak pada bobot materi otomotif, melainkan pada dinamika psikologis dan kondisi humanis para siswa. Di kelas, saya berhadapan dengan keberagaman latar belakang; cukup banyak siswa yang datang dalam keadaan lelah dan sulit berkonsentrasi karena harus bekerja membantu ekonomi keluarga selepas jam sekolah.
+					<h3 class="text-l font-bold text-slate-600 mb-3">Solusi :</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm leading-relaxed text-justify">
+						Menghadapi situasi tersebut, saya menggeser paradigma manajemen kelas dari seorang pengajar konvensional menjadi fasilitator yang mengedepankan empati. Saya menyiasatinya dengan menyesuaikan ritme pembelajaran agar lebih akomodatif tanpa memangkas standar kompetensi yang harus dicapai.
+
+Saya menerapkan model Problem-Based Learning (PBL) yang menghubungkan kerusakan teknis kendaraan dengan kasus nyata di bengkel. Strategi ini terbukti ampuh mendongkrak motivasi belajar mereka, karena materi terasa lebih aplikatif dan siswa diberi ruang untuk aktif berdiskusi ketimbang sekadar menyimak ceramah teori yang panjang.
+					<h3 class="text-l font-bold text-slate-800 mb-3">3. Apakah Umpan Balik dan Saran Konstruktif untuk PPL Mandiri.</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm leading-relaxed text-justify">
+						Melalui forum diskusi refleksi akhir bersama dosen pembimbing dan guru pamong, saya menerima beberapa rekomendasi strategis sebagai bahan evaluasi menyongsong tahapan PPL Mandiri:
+                    <p class="text-slate-600 leading-relaxed text-sm leading-relaxed text-justify">
+						a. Optimasi Manajemen Waktu dalam PBL: Saya diarahkan untuk lebih presisi dalam membagi alokasi waktu. Mengingat sintaks dalam Problem-Based Learning terutama tahap investigasi kelompok kerap memakan durasi yang panjang, saya perlu merancang timeline kerja praktik yang lebih ketat agar seluruh fase pembelajaran selesai sesuai jadwal.
+					<p class="text-slate-600 leading-relaxed text-sm leading-relaxed text-justify">
+						b. Aplikasi Asesmen Berdiferensiasi: Menimbang variasi kesiapan belajar dan stamina siswa (terutama mereka yang bekerja), saya disarankan untuk mematangkan instrumen penilaian yang berdiferensiasi. Hal ini penting agar evaluasi capaian praktik tidak kaku, melainkan mampu mengukur perkembangan kompetensi tiap individu secara adil.
+					<p class="text-slate-600 leading-relaxed text-sm leading-relaxed text-justify">
+						c. Otonomi Manajemen Kelas dan Bengkel: Memasuki fase PPL Mandiri, saya dituntut untuk lebih berani mengambil kendali penuh dalam mengondisikan ketertiban workshop. Saya harus mandiri tanpa terus bersandar pada arahan guru pamong, termasuk dalam menegakkan disiplin Keselamatan dan Kesehatan Kerja (K3) saat siswa melakukan penanganan pada ketiga sistem kendaraan.
+					</p>
+	
+                    </button></a>
+                </div>
+			<!-- </div> -->
+			<!-- <div class="grid grid-cols-1 md:grid-cols-1 gap-6 lg:gap-8"> -->
+				<div class="bg-white rounded-xl p-8 mb-6 shadow-sm hover:shadow-lg transition-all duration-300 border-t-4 border-black-400 group">
+                    <div class="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-book text-2xl text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">Filosofi Mengajar</h3>
+					<h3 class="text-xl font-bold text-slate-800 mb-3">Mengintegrasikan Empati dan Pembelajaran Bermakna demi Membangun Kompetensi</h3>
+                    <p class="text-slate-600 leading-relaxed text-sm leading-relaxed text-justify mb-4">
+                        Prinsip mendidik yang saya pegang teguh berlandaskan pada keyakinan bahwa pendidikan vokasi, pada hakikatnya, adalah upaya untuk "memanusiakan manusia" sebelum membentuk mereka menjadi tenaga kerja siap pakai yang terampil. Melalui rangkaian pengalaman dari fase observasi, asistensi, hingga praktik pembelajaran terbimbing, saya memahami betul bahwa setiap siswa membawa latar belakang kehidupan yang tidak sederhana ke dalam ruang kelas.
+
+Menghadapi realitas di mana banyak siswa datang dalam kondisi lelah secara fisik maupun mental akibat tuntutan menopang ekonomi keluarga, mengonstruksi prinsip fundamental dalam diri saya: guru bukan sekadar penyampai materi teknis, melainkan seorang fasilitator yang penuh empati.
+
+Mengacu pada teori pendidikan humanistik Carl Rogers mengenai pentingnya penerimaan tanpa syarat (unconditional positive regard), saya meyakini bahwa menciptakan atmosfer belajar yang aman secara emosional dan penuh pengertian adalah syarat mutlak. Siswa perlu merasa diakui dan dipahami terlebih dahulu, agar tumbuh motivasi internal dalam diri mereka untuk menguasai materi teknis yang kompleks.
+                    <p class="text-slate-600 leading-relaxed text-sm leading-relaxed text-justify mb-4">
+						Secara pedagogis, orientasi mengajar saya digerakkan oleh konsep Pembelajaran Mendalam (Deep Learning) yang berbasis pada pemecahan masalah. Dalam mentransfer kompetensi keahlian Teknik Kendaraan Ringan khususnya pada Sistem Pengapian, Sistem AC, dan Sistem Audio Video saya mengadopsi paradigma konstruktivisme sosial dari Lev Vygotsky. Saya percaya bahwa penguasaan materi yang substansial tidak dicapai lewat hafalan nama komponen, melainkan dibangun secara mandiri oleh siswa saat mereka berinteraksi langsung dengan situasi nyata.
+
+Oleh karena itu, implementasi model Problem-Based Learning (PBL) menjadi fondasi utama dalam manajemen kelas saya. Dengan menyajikan problem autentik pada sistem kendaraan, siswa dipicu untuk berpikir kritis, bekerja sama dalam tim, dan merumuskan solusi yang sesuai dengan standar dunia industri. Pendekatan ini terbukti efektif dalam menjembatani jarak antara teori akademis dan realitas praktis di lapangan.
+					<p class="text-slate-600 leading-relaxed text-sm leading-relaxed text-justify">
+						Pada akhirnya, esensi utama yang mengintegrasikan seluruh aktivitas instruksional saya adalah kemampuan beradaptasi dan komitmen pada refleksi yang berkelanjutan. Menjadi seorang pendidik profesional berarti bersedia menjadi pembelajar sepanjang hayat, yang senantiasa mencatat setiap hambatan di lapangan sebagai bahan evaluasi kritis atas strategi yang telah diterapkan.
+
+Bagi saya, mendidik siswa SMK bukan sekadar mentransfer keterampilan mekanis, melainkan menumbuhkan daya lenting (resilience) serta ketajaman berpikir dalam mengatasi masalah. Komitmen filosofis ini yang memadukan pendekatan humanis berbasis empati, analisis problem yang tajam, dan evaluasi diri yang konsisten akan selalu menjadi kompas moral serta ideologis saya dalam menjalani peran sebagai guru yang memberi dampak nyata bagi masa depan peserta didik.
+					</p>
+                    </button></a>
+                </div>
+			<!-- </div> -->
+        </section>
+
+        <!-- 7. DOKUMENTASI KEGIATAN -->
+        <section id="dokumentasi" class="page-section hidden opacity-0">
+            <div class="mb-10 text-center">
+                <h2 class="text-3xl font-bold text-slate-900 mb-3">Dokumentasi Kegiatan PPL</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto rounded-full mb-6"></div>
+                <p class="text-slate-600 font-serif">Bagian ini berisi dokumentasi berupa foto kegiatan saya selama mengikuti program Praktik Pengalaman Lapangan (PPL).</p>
+            </div>
+
+            <!-- Grid 5 Rubrik -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- 1. Orientasi -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                    <img src="bersama-pamong.jpeg" alt="Orientasi" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="text-xs font-bold text-primary uppercase mb-1">ORIENTASI</div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Pertemuan Pertama Bersama Guru Pamong</h3>
+                        <p class="text-sm text-slate-600 line-clamp-3">
+                            [Kegiatan saat awal mula bertemu langsung bersama Guru Pamong di Sekolah, tepatnya di SMK Negeri 3 Makassar.]
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                    <img src="serah-terima-mahasiswa-ppl.jpeg" alt="Orientasi" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="text-xs font-bold text-primary uppercase mb-1">ORIENTASI</div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Penyerahan Mahasiswa PPL Terbimbing secara Simbolis</h3>
+                        <p class="text-sm text-slate-600 line-clamp-3">
+                            [Penyerahan secara simbolis dari pihak LPTK yang di laksanakan oleh Dosen Pembimbing Lapangan dan diterima langsung oleh Kepala Sekolah.]
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                    <img src="foto-bersama-penerimaan.jpeg" alt="Orientasi" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="text-xs font-bold text-primary uppercase mb-1">ORIENTASI</div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Foto Bersama Penerimaan Mahasiswa PPL Terbimbing</h3>
+                        <p class="text-sm text-slate-600 line-clamp-3">
+                            [Foto bersama kegiatan orientasi bersama kepala sekolah, dosen pembimbing lapangan dan guru pamong dan beberapa wakasek.]
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                    <img src="wawancara-wakasek.jpeg" alt="Orientasi" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="text-xs font-bold text-primary uppercase mb-1">ORIENTASI</div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Wawancara dengan Wakasek Kurikulum</h3>
+                        <p class="text-sm text-slate-600 line-clamp-3">
+                            [Wawancara langsung Wakasek Kurikulum dan Pengenalan lingkungan sekolah serta budaya akademik.]
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2. Observasi -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                    <img src="praktik pengalaman lapangan.jpeg" alt="Observasi" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="text-xs font-bold text-secondary uppercase mb-1">Rubrik 2</div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Praktik Pengalaman Lapangan</h3>
+                        <p class="text-sm text-slate-600 line-clamp-3">
+                            [Praktik mengajar secara langsung di Lab. Teknik Kendaraan Ringan Otomotif.]
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 3. Asistensi -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                    <img src="asistensi-mengajar.jpeg" alt="Asistensi" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="text-xs font-bold text-accent uppercase mb-1">Rubrik 3</div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Asistensi Mengajar</h3>
+                        <p class="text-sm text-slate-600 line-clamp-3">
+                            [Kegiatan Asistensi Mengajar sekaligus membantu guru pamong dalam mengajar, menyusun perangkat, media, mendampingi siswa, atau memeriksa tugas.]
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4. Evaluasi -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                    <img src="konsultasi-dpl.jpeg" alt="Evaluasi" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="text-xs font-bold text-red-500 uppercase mb-1">Rubrik 4</div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Konsultasi Bersama DPL</h3>
+                        <p class="text-sm text-slate-600 line-clamp-3">
+                            [Bimbingan dan Konsultasi langsung kepada Dosen Pembimbing Lapangan.]
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 5. Penutup -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 lg:col-span-1 md:col-span-2 lg:col-start-2">
+                    <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Penutup" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <div class="text-xs font-bold text-purple-600 uppercase mb-1">Rubrik 5</div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">Penutup & Penarikan</h3>
+                        <p class="text-sm text-slate-600 line-clamp-3">
+                            [Tulis deskripsi momen perpisahan, penyerahan kembali mahasiswa oleh sekolah mitra ke pihak kampus/LPTK.]
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+		
+		
+		
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm">
+                &copy; <script>document.write(new Date().getFullYear())</script> E-Portofolio PPL Terbimbing PPG Calon Guru. Disusun oleh <span class="text-white font-medium">Ricky Ridman-2590074950850</span>.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Navigation & Interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const navLinksMobile = document.querySelectorAll('.nav-link-mobile');
+            const sections = document.querySelectorAll('.page-section');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // Function to change active section
+            const switchSection = (targetId) => {
+                // 1. Hide all sections and reset animation
+                sections.forEach(sec => {
+                    sec.classList.add('hidden');
+                    sec.classList.remove('animate-fade-in');
+                });
+
+                // 2. Show target section and trigger animation
+                const targetSec = document.getElementById(targetId);
+                targetSec.classList.remove('hidden');
+                // Timeout needed to restart CSS animation
+                setTimeout(() => targetSec.classList.add('animate-fade-in'), 10);
+
+                // 3. Update Desktop Navbar styling
+                navLinks.forEach(link => {
+                    link.classList.remove('text-primary', 'border-primary');
+                    link.classList.add('text-gray-500', 'border-transparent');
+                    if (link.getAttribute('data-target') === targetId) {
+                        link.classList.remove('text-gray-500', 'border-transparent');
+                        link.classList.add('text-primary', 'border-primary');
+                    }
+                });
+
+                // 4. Update Mobile Navbar styling & close menu
+                navLinksMobile.forEach(link => {
+                    link.classList.remove('text-primary', 'bg-indigo-50');
+                    link.classList.add('text-gray-600');
+                    if (link.getAttribute('data-target') === targetId) {
+                        link.classList.remove('text-gray-600');
+                        link.classList.add('text-primary', 'bg-indigo-50');
+                    }
+                });
+                mobileMenu.classList.add('hidden'); // auto-close menu on mobile
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            // Add Event Listeners to Desktop Links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = e.target.getAttribute('data-target');
+                    switchSection(targetId);
+                });
+            });
+
+            // Add Event Listeners to Mobile Links
+            navLinksMobile.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = e.target.getAttribute('data-target');
+                    switchSection(targetId);
+                });
+            });
+
+            // Toggle Mobile Menu
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
